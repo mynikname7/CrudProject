@@ -5,14 +5,14 @@ from .forms import PersonForm
 from django.forms.models import model_to_dict
 
 
-# Получение данных из БД
+
 def index(request):
     form = PersonForm()
     people = Person.objects.all()
     return render(request, 'index.html', {'form': form, 'people': people})
 
 
-# Сохранение данных в БД
+
 def create(request):
     if request.method == 'POST':
         form = PersonForm(request.POST)
@@ -24,7 +24,7 @@ def create(request):
     return HttpResponseRedirect('/')
 
 
-# Изменение данных в БД
+
 def edit(request, id):
     try:
         person = Person.objects.get(id=id)
@@ -43,7 +43,7 @@ def edit(request, id):
         return render(request, 'edit.html', {'form': form})
 
 
-# Удаление данных из БД
+
 def delete(request, id):
     try:
         person = Person.objects.get(id=id)
